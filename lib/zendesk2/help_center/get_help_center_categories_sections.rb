@@ -3,7 +3,8 @@ class Zendesk2::GetHelpCenterCategoriesSections
   include Zendesk2::Request
 
   request_path do |r|
-    "/help_center/categories/#{r.category_id}/sections.json"
+    locale = r.params['locale']
+    locale ? "/help_center/#{locale}/categories/#{r.category_id}/sections.json" : "/help_center/categories/#{r.category_id}/sections.json"
   end
 
   page_params!
